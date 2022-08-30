@@ -6,10 +6,10 @@ $(document).ready(function() {
     //END
 
     let url = null;
-    if (grade) {
-        url = '/api/getAttendances/' + grade;
-    } else {
+    if (grade == null) {
         url = '/api/getAttendances';
+    } else {
+        url = '/api/getAttendances/' + grade;
     }
 
     setInterval(() => {
@@ -75,5 +75,5 @@ $(document).ready(function() {
                 $('.attendance-data').html(data);
             }
         });
-    }, 2500);
+    }, 1000);
 })

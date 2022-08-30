@@ -11,7 +11,6 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Spatie\LaravelIgnition\Support\LivewireComponentParser;
 
 class PresentController extends Controller
 {
@@ -168,14 +167,12 @@ class PresentController extends Controller
 
     public function getAttendancesWithGrade($grade)
     {
+        $gradeResult = Grade::where('slug', $grade)->first();
+
+        $students = Student::where('grade_id', $gradeResult->id)->pluck('id');
+
         $attendances = Attendance::latest()->where('present_date', date("Y-m-d"))
-            ->where('desc', '!=', 'alpha')->get();
-
-        $grade = Grade::where('slug', request('grade'))->first();
-
-        $students = Student::where('grade_id', $grade->id)->pluck('id');
-
-        $attendances->whereIn('student_id', $students);
+            ->where('desc', '!=', 'alpha')->whereIn('student_id', $students)->get();
 
         $response = [];
 
