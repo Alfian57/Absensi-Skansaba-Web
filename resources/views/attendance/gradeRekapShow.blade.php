@@ -17,7 +17,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/admin/attendances" method="GET" class="d-flex">
+                <form action="/admin/attendances/gradeRekap/{{ $slug }}" method="GET" class="d-flex">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="month" class="form-label">Bulan</label>
@@ -82,6 +82,9 @@
     {{-- Table --}}
     @if ($data == null)
         <div class="row justify-content-center">
+            <div class="text-primary h4 ms-3">
+                Jumlah Siswa : {{ $studentCount }}
+            </div>
             <div class="col-md-6">
                 <img src="/img/bg-present.svg" alt="Data Absensi Kosong" class="img-fluid w-100 mt-3">
                 <h3 class="text-danger text-center mt-2">Data Masih Kosong</h3>

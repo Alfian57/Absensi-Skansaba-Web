@@ -249,6 +249,7 @@ class AttendanceController extends Controller
             'name' => $student->name,
             'attendances' => $attendances->limit(1000)->get(),
             'masuk' => $masuk->where('desc', 'masuk')->count(),
+            'nisn' => $nisn,
             'terlambat' => $terlambat->where('desc', 'terlambat')->count(),
             'sakit' => $sakit->where('desc', 'sakit')->count(),
             'ijin' => $ijin->where('desc', 'ijin')->count(),
@@ -293,7 +294,22 @@ class AttendanceController extends Controller
             $attendances->whereRaw('YEAR(present_date)=' . date("Y"));
         }
 
-        $days = Attendance::selectRaw('EXTRACT(DAY FROM present_date) as day')->distinct()->orderBy('day', 'ASC')->get();
+        $days = [];
+        if (request('month')) {
+            $days = Attendance::selectRaw('EXTRACT(DAY FROM present_date) as day')
+                ->whereRaw('MONTH(present_date)=' . request('month'))
+                ->whereIn('student_id', $studentId)
+                ->distinct()
+                ->orderBy('day', 'ASC')
+                ->get();
+        } else {
+            $days = Attendance::selectRaw('EXTRACT(DAY FROM present_date) as day')
+                ->whereRaw('MONTH(present_date)=' . date("m"))
+                ->whereIn('student_id', $studentId)
+                ->distinct()
+                ->orderBy('day', 'ASC')
+                ->get();
+        }
         $data = [];
         foreach ($days as $day) {
             $masuk = $attendances->clone();
@@ -325,6 +341,7 @@ class AttendanceController extends Controller
             'title' => 'Detail Rekap ' . $grade->name,
             'name' => $grade->name,
             'data' => $data,
+            'slug' => $slug,
             'studentCount' => Student::whereIn('grade_id', $grade)->count(),
             'months' => Attendance::selectRaw('EXTRACT(MONTH FROM present_date) as month')->distinct()->orderBy('month', 'ASC')->get(),
             'years' => Attendance::selectRaw('EXTRACT(YEAR FROM present_date) as year')->distinct()->orderBy('year', 'ASC')->get(),

@@ -17,7 +17,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/admin/attendances" method="GET" class="d-flex">
+                <form action="/admin/attendances/rekap/{{ $nisn }}" method="GET" class="d-flex">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="month" class="form-label">Bulan</label>
