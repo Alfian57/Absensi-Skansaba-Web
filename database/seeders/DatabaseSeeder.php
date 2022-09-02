@@ -35,10 +35,10 @@ class DatabaseSeeder extends Seeder
         //     'value' => Str::random(20),
         // ]);
 
-        User::factory(3)->create();
-        Grade::factory(10)->create();
-        Teacher::factory(10)->create();
-        Student::factory(50)->create();
+        //User::factory(3)->create();
+        Grade::factory(48)->create();
+        Teacher::factory(50)->create();
+        Student::factory(2000)->create();
 
         $now = Carbon::now();
         $now->setTimezone('Asia/Jakarta');
@@ -53,6 +53,34 @@ class DatabaseSeeder extends Seeder
                 'present_time' => $now
             ]);
         }
+
+        User::factory()->create([
+            'name' => "Admin",
+            'email' => "admin@gmail.com",
+            'username' => "Admin",
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+        ]);
+
+        User::factory()->create([
+            'name' => "Alfian Gading Saputra",
+            'email' => "gading@gmail.com",
+            'username' => "Gading",
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+        ]);
+
+        User::factory()->create([
+            'name' => "Fajar Maulana",
+            'email' => "fajar@gmail.com",
+            'username' => "Fajar",
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+        ]);
+
+        User::factory()->create([
+            'name' => "Rasyid Prayogo",
+            'email' => "rasyid@gmail.com",
+            'username' => "Rasyid",
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+        ]);
 
         OtherData::factory()->create([
             'name' => 'Kunci Absensi',
