@@ -45,7 +45,7 @@ class StudentController extends Controller
         $data = [
             'title' => 'Semua Siswa',
             'students' => $students->limit(500)->get(),
-            'grades' => Grade::latest()->get()
+            'grades' => Grade::orderBy('name', "ASC")->get()
         ];
 
         return view('student.index', $data);
@@ -62,7 +62,7 @@ class StudentController extends Controller
 
         $data = [
             'title' => 'Tambah Siswa',
-            'grades' => Grade::latest()->get()
+            'grades' => Grade::orderBy('name', "ASC")->get()
         ];
         return view('student.create', $data);
     }
@@ -137,7 +137,7 @@ class StudentController extends Controller
         $data = [
             'title' => 'Edit Data Siswa',
             'student' => $student,
-            'grades' => Grade::latest()->get()
+            'grades' => Grade::orderBy('name', "ASC")->get()
         ];
         return view('student.edit', $data);
     }

@@ -55,7 +55,7 @@ class AttendanceController extends Controller
         $data = [
             'title' => 'Semua Data Absensi',
             'attendances' => $attendances->with('student')->limit(1000)->get(),
-            'grades' => Grade::latest()->get()
+            'grades' => Grade::orderBy('name', "ASC")->get()
         ];
 
         return view('attendance.index', $data);
@@ -182,7 +182,7 @@ class AttendanceController extends Controller
     {
         Helper::addHistory('/admin/attendances/rekap', 'Rekap Siswa');
 
-        $attendances = Attendance::latest();
+        $students = Student::latest();
 
         if (request('grade')) {
             $grade = Grade::where('slug', request('grade'))->first();
@@ -192,26 +192,17 @@ class AttendanceController extends Controller
                 $grade = 0;
             }
 
-            $students = Student::where('grade_id', $grade)->pluck('id');
-
-            $attendances->whereIn('student_id', $students);
+            $students->where("student_id", $grade);
         }
 
         if (request('nisn')) {
-            $student = Student::where('nisn', request('nisn'))->first();
-            if ($student != null) {
-                $student = $student->id;
-            } else {
-                $student = 0;
-            }
-
-            $attendances->where('student_id', $student);
+            $students->where('nisn', request('nisn'));
         }
 
         $data = [
             'title' => 'Semua Rekap Siswa',
-            'attendances' => $attendances->with('student')->get(),
-            'grades' => Grade::latest()->get()
+            'students' => $students->get(),
+            'grades' => Grade::orderBy('name', "ASC")->get()
         ];
 
         return view('attendance.rekap', $data);
@@ -267,7 +258,7 @@ class AttendanceController extends Controller
 
         $data = [
             'title' => 'Semua Rekap Kelas',
-            'grades' => Grade::latest()->get()
+            'grades' => Grade::orderBy('name', "ASC")->get()
         ];
 
         return view('attendance.gradeRekap', $data);

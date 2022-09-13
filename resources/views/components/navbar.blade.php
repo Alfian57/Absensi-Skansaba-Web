@@ -50,7 +50,7 @@
                             @if (Auth::guard('teacher')->check())
                                 <div class="pt-2">
                                     @if (Auth::guard('teacher')->user()->profile_pic)
-                                        <div class="avatar-lg pt-2"><img
+                                        <div class="avatar-lg"><img
                                                 src="{{ asset('storage/' . Auth::guard('teacher')->user()->profile_pic) }}"
                                                 alt="image profile" class="avatar-img-nav rounded-circle img-fluid">
                                         </div>

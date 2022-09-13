@@ -60,7 +60,7 @@
     </div>
 
     {{-- Table --}}
-    @if ($attendances->isEmpty())
+    @if ($students->isEmpty())
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <img src="/img/bg-present.svg" alt="Data Absensi Kosong" class="img-fluid w-100 mt-3">
@@ -80,16 +80,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($attendances as $attendance)
+                    @foreach ($students as $student)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $attendance->student->nisn }}</td>
-                            <td>{{ $attendance->student->name }}</td>
-                            <td>{{ $attendance->student->grade->name }}</td>
+                            <td>{{ $student->nisn }}</td>
+                            <td>{{ $student->name }}</td>
+                            <td>{{ $student->grade->name }}</td>
 
 
                             <td>
-                                <a href="/admin/attendances/rekap/{{ $attendance->student->nisn }}"
+                                <a href="/admin/attendances/rekap/{{ $student->nisn }}"
                                     class="btn btn-primary btn-sm my-2 btn-action">
                                     <img src="/img/eye.png" alt="Show" class="icon">
                                 </a>
