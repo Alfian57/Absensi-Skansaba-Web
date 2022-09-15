@@ -50,9 +50,9 @@ class PresentController extends Controller
 
         try {
             if ($request->key == $key->value) {
-                $student = Student::where('id', $request->id)->get();
-                if (!$student->isEmpty()) {
-                    $attendances = Attendance::where('student_id', $student[0]->id)
+                $student = Student::where('id', $request->id)->first();
+                if (!$student == null) {
+                    $attendances = Attendance::where('student_id', $student->id)
                         ->where('present_date', date("Y-m-d"))
                         ->first();
 
@@ -67,7 +67,7 @@ class PresentController extends Controller
                             return response()->json($response);
                         }
 
-                        $data['student_id'] = $student[0]->id;
+                        $data['student_id'] = $student->id;
                         $data['present_date'] = date("Y-m-d");
                         $data['present_time'] = $now;
 
@@ -82,7 +82,7 @@ class PresentController extends Controller
                         $id = $id->id;
                         Attendance::where('id', $id)->update($data);
 
-                        $studentResponse = Student::where('id', $student[0]->id)
+                        $studentResponse = Student::where('id', $student->id)
                             ->select('id', 'nisn', 'nis', 'name', 'date_of_birth', 'gender', 'address', 'grade_id as grade', 'entry_year', 'profile_pic')
                             ->first();
 
@@ -90,7 +90,7 @@ class PresentController extends Controller
 
                         $studentResponse->grade = $grade->name;
 
-                        if ($data['desc'] == 'masuk') {
+                        if ($data['desc'] == "masuk") {
                             $response = [
                                 'message'       => 'Berhasil Melakukan Absensi',
                                 'errors'    => null,
@@ -98,6 +98,7 @@ class PresentController extends Controller
                                     'student' => $studentResponse
                                 ],
                             ];
+                            return response()->json($response, 200);
                         } else {
                             $response = [
                                 'message'       => 'Terlambat Melakukan Absensi',
@@ -135,7 +136,7 @@ class PresentController extends Controller
         } catch (Exception $e) {
             $response = [
                 'message'       => 'Tidak Bisa Melakukan Absensi Saat Ini',
-                'errors'    => null,
+                'errors'    => $e->getMessage(),
                 'data'    => null,
             ];
             return response()->json($response);
