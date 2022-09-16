@@ -10,6 +10,7 @@ use App\Models\Student;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PresentController extends Controller
@@ -17,8 +18,8 @@ class PresentController extends Controller
     public function store(Request $request)
     {
         //Validasi (Start)
+        $id = Auth::guard('sanctum')->user()->id;
         $validator = Validator::make($request->all(), [
-            'id' => 'required',
             'key' => 'required'
         ]);
 
@@ -50,7 +51,7 @@ class PresentController extends Controller
 
         try {
             if ($request->key == $key->value) {
-                $student = Student::where('id', $request->id)->first();
+                $student = Student::where('id', $id)->first();
                 if (!$student == null) {
                     $attendances = Attendance::where('student_id', $student->id)
                         ->where('present_date', date("Y-m-d"))

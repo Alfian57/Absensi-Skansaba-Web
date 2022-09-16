@@ -76,8 +76,9 @@ class LoginController extends Controller
         return response()->json($data, 200);
     }
 
-    public function profile($id)
+    public function profile()
     {
+        $id = Auth::guard('sanctum')->user()->id;
         $student = Student::where('id', $id)
             ->select('id', 'nisn', 'nis', 'name', 'date_of_birth', 'gender', 'address', 'grade_id as grade', 'entry_year', 'profile_pic')
             ->first();
@@ -97,8 +98,9 @@ class LoginController extends Controller
         return response()->json($data, 200);
     }
 
-    public function changePassword($id, Request $request)
+    public function changePassword(Request $request)
     {
+        $id = Auth::guard('sanctum')->user()->id;
         $validator = Validator::make($request->all(), [
             'oldPassword' => 'required',
             'newPassword' => 'required'

@@ -25,10 +25,10 @@ Route::get("/getAttendances", [PresentController::class, 'getAttendances']);
 Route::get("/getAttendances/{grade}", [PresentController::class, 'getAttendancesWithGrade']);
 
 Route::group(['prefix' => 'student', 'middleware' => 'auth:sanctum'], function () {
-    Route::get("/me/{id}", [LoginController::class, 'profile']);
-    // Route::put("/edit/{id}", [LoginController::class, 'edit']);
+    Route::get("/me", [LoginController::class, 'profile']);
+    // Route::put("/edit", [LoginController::class, 'edit']);
     Route::post("/logout", [LoginController::class, 'logout']);
-    Route::post("/changePassword/{id}", [LoginController::class, 'changePassword']);
+    Route::post("/changePassword", [LoginController::class, 'changePassword']);
     Route::post('/present', [PresentController::class, 'store']);
-    Route::get('/myschedules/{id}/day/{day}', [ScheduleController::class, 'index']);
+    Route::get('/myschedules/{day}', [ScheduleController::class, 'index']);
 });

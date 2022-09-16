@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Schedule;
-use App\Models\Student;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
-    public function index($id, $day)
+    public function index($day)
     {
-        $student = Student::where('id', $id)->first();
+        $student = Auth::guard('sanctum')->user();
 
         if ($student == null) {
             $response = [
