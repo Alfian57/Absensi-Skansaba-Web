@@ -147,14 +147,19 @@ class ScheduleController extends Controller
 
     public function mySchedule()
     {
-        session()->push('history', [
-            'route' => '/admin/myschedules',
-            'name' => 'Jadwalku'
-        ]);
+        Helper::addHistory('/admin/myschedules', 'Jadwalku');
+
+        $schedules = [
+            'senin' => Schedule::where('teacher_id', Auth::guard('teacher')->user()->id)->orderBy('time_start', 'ASC')->where('day', 'senin')->get(),
+            'selasa' => Schedule::where('teacher_id', Auth::guard('teacher')->user()->id)->orderBy('time_start', 'ASC')->where('day', 'selasa')->get(),
+            'rabu' => Schedule::where('teacher_id', Auth::guard('teacher')->user()->id)->orderBy('time_start', 'ASC')->where('day', 'rabu')->get(),
+            'kamis' => Schedule::where('teacher_id', Auth::guard('teacher')->user()->id)->orderBy('time_start', 'ASC')->where('day', 'kamis')->get(),
+            'jumat' => Schedule::where('teacher_id', Auth::guard('teacher')->user()->id)->orderBy('time_start', 'ASC')->where('day', 'jumat')->get(),
+        ];
 
         return view('schedule.myschedule', [
             'title' => 'My Schedule',
-            'schedules' => Schedule::where('teacher_id', Auth::guard('teacher')->user()->id)->latest()->get(),
+            'schedules' => $schedules
         ]);
     }
 }
