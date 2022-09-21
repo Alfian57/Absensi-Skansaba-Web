@@ -193,4 +193,49 @@ class PresentController extends Controller
 
         return response()->json($response);
     }
+
+    public function recap()
+    {
+        $student = Auth::guard('sanctum')->user();
+
+        if ($student == null) {
+            $response = [
+                'message'       => 'Murid Tidak Ditemukan',
+                'errors'    => null,
+                'data'      => null
+            ];
+            return response()->json($response);
+        }
+
+        if (!request('month')) {
+            $response = [
+                'message'       => "Masukan Field 'month'",
+                'errors'    => null,
+                'data'      => null
+            ];
+            return response()->json($response);
+        }
+        if (!request('year')) {
+            $response = [
+                'message'       => "Masukan Field 'year'",
+                'errors'    => null,
+                'data'      => null
+            ];
+            return response()->json($response);
+        }
+
+        $attendance = Attendance::where('student_id', $student->id)
+            ->whereRaw('MONTH(present_date)=' . request('month'))
+            ->whereRaw('YEAR(present_date)=' . request('year'))
+            ->select('desc', 'present_date', 'present_time')
+            ->orderBy('present_date', 'ASC')
+            ->get();
+
+        $response = [
+            'message'       => 'Berhasil Mendapatkan Rekap Absensi',
+            'errors'    => null,
+            'data'      => $attendance
+        ];
+        return response()->json($response);
+    }
 }

@@ -8,8 +8,18 @@ use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
-    public function index($day)
+    public function index()
     {
+        if (!request('day')) {
+            $response = [
+                'message'       => "Masukan Field 'day'",
+                'errors'    => null,
+                'data'      => null
+            ];
+            return response()->json($response);
+        }
+
+        $day = request('day');
         $student = Auth::guard('sanctum')->user();
 
         if ($student == null) {

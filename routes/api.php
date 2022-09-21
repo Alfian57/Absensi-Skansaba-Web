@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\LoginController;
-use App\Http\Controllers\Api\PresentController;
 use App\Http\Controllers\Api\ScheduleController;
+use App\Http\Controllers\Api\PresentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +26,9 @@ Route::get("/getAttendances/{grade}", [PresentController::class, 'getAttendances
 
 Route::group(['prefix' => 'student', 'middleware' => 'auth:sanctum'], function () {
     Route::get("/me", [LoginController::class, 'profile']);
-    // Route::put("/edit", [LoginController::class, 'edit']);
+    Route::get("/myAttendance", [PresentController::class, 'recap']);
     Route::post("/logout", [LoginController::class, 'logout']);
     Route::post("/changePassword", [LoginController::class, 'changePassword']);
     Route::post('/present', [PresentController::class, 'store']);
-    Route::get('/myschedules/{day}', [ScheduleController::class, 'index']);
+    Route::get('/myschedules', [ScheduleController::class, 'index']);
 });
