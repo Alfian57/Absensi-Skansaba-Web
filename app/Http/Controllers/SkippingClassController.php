@@ -31,7 +31,7 @@ class SkippingClassController extends Controller
 
         $data = [
             'title' => "Siswa Bolos",
-            'skippingClasses' => SkippingClass::whereIn('student_id', $studentsId)->get()
+            'skippingClasses' => SkippingClass::whereIn('student_id', $studentsId)->with('subject', 'student')->get()
         ];
 
         return view('skippingClass.index', $data);

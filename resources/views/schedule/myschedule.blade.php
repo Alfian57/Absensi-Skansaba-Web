@@ -9,7 +9,7 @@
     @foreach ($schedules as $key => $schedule)
         <h3 class="text-center mt-5">{{ ucfirst($key) }}</h3>
         @if ($schedule->isEmpty())
-            <div class="alert alert-danger mt-3">Jadwal Hari {{ ucfirst($key) }} Kosong</div>
+            @include('components.empty-data')
         @else
             <div class="row justify-content-center mt-3">
                 @foreach ($schedule as $item)
