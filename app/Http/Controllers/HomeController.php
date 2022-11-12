@@ -22,7 +22,7 @@ class HomeController extends Controller
 
         if (request('year')) {
             for ($i = 1; $i <= 12; $i++) {
-                array_push($masukAttendanceCount, Attendance::where('desc', 'masuk')->whereRaw('MONTH(present_date) = ' . $i . ' AND YEAR(present_date) =' . request('year'))->count());
+                array_push($masukAttendanceCount, Attendance::where('desc', 'masuk')->orWhere('desc', 'masuk (bolos)')->whereRaw('MONTH(present_date) = ' . $i . ' AND YEAR(present_date) =' . request('year'))->count());
             }
             for ($i = 1; $i <= 12; $i++) {
                 array_push($terlambatAttendanceCount, Attendance::where('desc', 'terlambat')->whereRaw('MONTH(present_date) = ' . $i . ' AND YEAR(present_date) =' . request('year'))->count());

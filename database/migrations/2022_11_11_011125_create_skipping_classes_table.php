@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('skipping_classes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
-            $table->string('desc');
-            $table->date('present_date');
-            $table->time('present_time');
-            $table->time('return_time')->nullable();
+            $table->unsignedBigInteger('subject_id');
+            $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
-
-            $table->timestamps();
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
     }
 
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('skipping_classes');
     }
 };

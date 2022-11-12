@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateAttendanceRequest;
 use App\Models\Grade;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Student;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AttendanceController extends Controller
 {
@@ -239,8 +240,9 @@ class AttendanceController extends Controller
             'title' => 'Detail Rekap ' . $student->name,
             'name' => $student->name,
             'attendances' => $attendances->limit(1000)->get(),
-            'masuk' => $masuk->where('desc', 'masuk')->count(),
             'nisn' => $nisn,
+            'masuk' => $masuk->where('desc', 'masuk')->count(),
+            'bolos' => $masuk->where('desc', 'masuk (bolos)')->count(),
             'terlambat' => $terlambat->where('desc', 'terlambat')->count(),
             'sakit' => $sakit->where('desc', 'sakit')->count(),
             'ijin' => $ijin->where('desc', 'ijin')->count(),
@@ -343,6 +345,10 @@ class AttendanceController extends Controller
 
     public function exportExcel()
     {
-        return Excel::download(new AttendanceExport, 'rekap-absensi.xlsx');
+        if (!request('grade') || !request('date')) {
+            return redirect()->back();
+        }
+
+        return Excel::download(new AttendanceExport(request('grade'), request('date')), 'rekap-absensi.xlsx');
     }
 }

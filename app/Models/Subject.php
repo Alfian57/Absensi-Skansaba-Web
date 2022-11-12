@@ -18,6 +18,11 @@ class Subject extends Model
         return $this->hasMany(Schedule::class);
     }
 
+    public function skippingClasses()
+    {
+        return $this->hasMany(SkippingClass::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

@@ -5,8 +5,8 @@
 
     <h2 class="text-center mt-3">Rekap Kelas {{ $name }}</h2>
 
-    <!-- Modal -->
-    <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Filter Modal -->
+    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header border-0">
@@ -72,11 +72,45 @@
         </div>
     </div>
 
-    <div class="d-flex">
-        <button class="btn btn-primary btn-sm ml-auto mb-3" data-toggle="modal" data-target="#addRowModal">
+    <!-- Download Modal -->
+    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">
+                        Download Data
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/admin/attendances/export" method="GET" class="d-flex">
+                    <input type="hidden" value="{{ $slug }}" name="grade">
+                    <div class="modal-body">
+                        <div class="mb-3 mt-3">
+                            <label for="date" class="form-label">Tanggal Presensi</label>
+                            <input type="date" class="form-control" name="date" id="date"
+                                value="{{ date('Y-m-d') }}" required autofocus>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-end mb-3">
+        <a class="btn btn-primary btn-sm ml-auto text-white" data-toggle="modal" data-target="#downloadModal">
+            Download Data (Excel)
+        </a>
+        <a class="btn btn-info btn-sm ml-auto text-white" data-toggle="modal" data-target="#filterModal">
             <i class="fa fa-search" aria-hidden="true"></i>
             Filter
-        </button>
+        </a>
     </div>
 
     {{-- Table --}}

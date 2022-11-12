@@ -30,8 +30,16 @@ class OtherDataController extends Controller
             return redirect('/admin/otherData');
         }
 
-        if ($otherData->name == "Kunci Absensi") {
-            OtherData::where('name', 'Kunci Absensi')->update([
+        if ($otherData->name == "QR Absensi Masuk") {
+            OtherData::where('name', 'QR Absensi Masuk')->update([
+                'value' => Str::random(20)
+            ]);
+
+            return redirect('/admin/otherData')->with('success', 'Data Berhasil Diperbarui');
+        }
+
+        if ($otherData->name == "QR Absensi Pulang") {
+            OtherData::where('name', 'QR Absensi Pulang')->update([
                 'value' => Str::random(20)
             ]);
 
@@ -47,10 +55,10 @@ class OtherDataController extends Controller
 
     public function update(UpdateOtherDataRequest $request)
     {
-        $waktuMulai = OtherData::where('name', 'Waktu Mulai')->first();
+        $waktuMulai = OtherData::where('name', 'Waktu Absen Mulai')->first();
         $waktuMulai = $waktuMulai->value;
 
-        $waktuBerakhir = OtherData::where('name', 'Waktu Berakhir')->first();
+        $waktuBerakhir = OtherData::where('name', 'Waktu Absen Berakhir')->first();
         $waktuBerakhir = $waktuBerakhir->value;
 
         $validatedData = $request->validate([
@@ -58,21 +66,21 @@ class OtherDataController extends Controller
             'value' => 'required'
         ]);
 
-        if ($request->name == "Kunci Absensi") {
+        if ($request->name == "QR Absensi Masuk" || $request->name == "QR Absensi Pulang") {
             $request->validate([
                 'value' => 'size:20'
             ]);
-        } else if ($request->name == "Waktu Mulai") {
+        } else if ($request->name == "Waktu Absen Mulai") {
             if (strtotime($waktuBerakhir) < strtotime($request->value)) {
                 return back()->with('errorMessage', 'Value must be less than "Waktu Berakhir"')
                     ->with('oldValue', $request->value);
             }
-        } else if ($request->name == "Waktu Berakhir") {
+        } else if ($request->name == "Waktu Absen Berakhir") {
             if (strtotime($waktuMulai) > strtotime($request->value)) {
                 return back()->with('errorMessage', 'Value must be grather than "Waktu Mulai"')
                     ->with('oldValue', $request->value);
             }
-        } else if ($request->name == "Waktu Terlambat") {
+        } else if ($request->name == "Waktu Absen Terlambat") {
             if (strtotime($waktuMulai) > strtotime($request->value) || strtotime($waktuBerakhir) < strtotime($request->value)) {
                 return back()->with('errorMessage', 'Value must be grather than "Waktu Mulai" and less than "Waktu Berakhir"')
                     ->with('oldValue', $request->value);

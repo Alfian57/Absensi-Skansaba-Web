@@ -24,7 +24,29 @@ class PresentController extends Controller
 
         $data = [
             'attendances' => $attendances->get(),
-            'qr' => OtherData::where('name', "Kunci Absensi")->first(),
+            'qr' => OtherData::where('name', "QR Absensi Masuk")->first(),
+            'grades' => Grade::latest()->get()
+        ];
+
+        return view('present.index', $data);
+    }
+
+    public function returnHome()
+    {
+        $attendances = Attendance::latest()->where('present_date', date("Y-m-d"))
+            ->where('return_time', '!=', null);
+
+        if (request('grade')) {
+            $grade = Grade::where('slug', request('grade'))->first();
+
+            $students = Student::where('grade_id', $grade->id)->pluck('id');
+
+            $attendances->whereIn('student_id', $students);
+        }
+
+        $data = [
+            'attendances' => $attendances->get(),
+            'qr' => OtherData::where('name', "QR Absensi Pulang")->first(),
             'grades' => Grade::latest()->get()
         ];
 

@@ -34,6 +34,21 @@ class DailyMakeAttendance extends Command
         $now->setTimezone('Asia/Jakarta');
         $now = $now->toTimeString();
 
+        $attendances = Attendance::where('return_time', null)
+            ->where('present_date', '!=', date("Y-m-d"))
+            ->where('desc', 'masuk')
+            ->get();
+
+        foreach ($attendances as $attendance) {
+            $attendance->update([
+                'student_id' => $attendance->student_id,
+                'desc' => 'masuk (bolos)',
+                'present_date' => $attendance->present_date,
+                'present_time' => $attendance->present_time,
+                'return_time' => $attendance->return_time,
+            ]);
+        }
+
         $date = Attendance::orderBy('present_date', "DESC")->first();
         if ($date != null) {
             $date = $date->present_date;

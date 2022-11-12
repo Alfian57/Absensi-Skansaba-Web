@@ -18,7 +18,11 @@
     <div class="container-fluid">
         <div class="row px-5 py-3">
             <div class="col-lg-7 second-content bg-light px-3 overflow-hidden">
-                <h1 class="text-primary mt-3 text-center">Data Absensi Hari Ini</h1>
+                @if (Request::is('present'))
+                    <h1 class="text-primary mt-3 text-center">Data Absensi Hari Ini</h1>
+                @else
+                    <h1 class="text-primary mt-3 text-center">Data Absensi Pulang Hari Ini</h1>
+                @endif
 
                 <div class="row justify-content-end mb-3">
                     <div class="col-lg-6">
@@ -114,7 +118,11 @@
     <!-- Datatables -->
     {{-- <script src="/js/plugin/datatables/datatables.min.js"></script> --}}
 
-    <script src="/js/attendance.js"></script>
+    @if (Request::is('present'))
+        <script src="/js/attendance.js"></script>
+    @else
+        <script src="/js/attendanceHome.js"></script>
+    @endif
 </body>
 
 </html>

@@ -40,9 +40,16 @@
         <div class="container-fluid">
             <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                 <li class="nav-item" style="margin-right: 70px; padding-bottom: 5px">
-                    <a href="/present">
-                        <img src="/img/qr.png" alt="QR" title="Halaman Absensi" class="qr-icon">
-                    </a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/img/qr.png" alt="QR" title="Halaman Absensi" class="qr-icon">
+                        </a>
+                        <ul class="dropdown-menu animated fadeIn">
+                            <li><a class="dropdown-item" href="/present">Absen Masuk</a></li>
+                            <li><a class="dropdown-item" href="/presentHome">Absen Pulang</a></li>
+                        </ul>
+                    </div>
+
                 </li>
                 <li class="nav-item dropdown hidden-caret">
                     <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
@@ -97,7 +104,8 @@
                                         @if (Auth::guard('teacher')->user()->profile_pic)
                                             <div class="avatar-lg"><img
                                                     src="{{ asset('storage/' . Auth::guard('teacher')->user()->profile_pic) }}"
-                                                    alt="image profile" class="avatar-img-nav rounded-circle img-fluid">
+                                                    alt="image profile"
+                                                    class="avatar-img-nav rounded-circle img-fluid">
                                             </div>
                                         @else
                                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"

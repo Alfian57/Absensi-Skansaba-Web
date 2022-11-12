@@ -3,10 +3,10 @@
 @section('content')
     @include('components.breadcrumb')
 
-    <h2 class="text-center mt-3">Rekap Siswa</h2>
+    <h2 class="text-center mt-3">Siswa Bolos</h2>
 
     <!-- Modal -->
-    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header border-0">
@@ -17,7 +17,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/admin/attendances/rekap" method="GET" class="d-flex">
+                <form action="/admin/students" method="GET" class="d-flex">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="nisn" class="form-label">NISN</label>
@@ -49,17 +49,17 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="text-end mb-3">
+        <a href="/admin/skippingClass/create" class="btn btn-success btn-sm">+ Tambah Siswa Bolos</a>
         <a class="btn btn-info btn-sm ml-auto text-white" data-toggle="modal" data-target="#filterModal">
             <i class="fa fa-search" aria-hidden="true"></i>
             Filter
         </a>
     </div>
 
-    {{-- Table --}}
-    @if ($students->isEmpty())
+    @if ($skippingClasses->isEmpty())
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <img src="/img/bg-present.svg" alt="Data Absensi Kosong" class="img-fluid w-100 mt-3">
@@ -69,29 +69,34 @@
     @else
         <div class="table-responsive mt-3">
             <table class="table table-striped datatable-without-search">
-                <thead class="table-primary table-striped">
+                <thead class="table-primary">
                     <tr>
                         <th>#</th>
                         <th>NISN</th>
                         <th>Nama</th>
                         <th>Kelas</th>
-                        <th class="attendance-action">Aksi</th>
+                        <th>Mata Pelajaran</th>
+                        <th class="action">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($students as $student)
+                    @foreach ($skippingClasses as $skippingClass)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $student->nisn }}</td>
-                            <td>{{ $student->name }}</td>
-                            <td>{{ $student->grade->name }}</td>
-
+                            <td>{{ $skippingClass->student->nisn }}</td>
+                            <td>{{ $skippingClass->student->name }}</td>
+                            <td>{{ $skippingClass->student->grade->name }}</td>
+                            <td>{{ $skippingClass->subject->name }}</td>
 
                             <td>
-                                <a href="/admin/attendances/rekap/{{ $student->nisn }}"
-                                    class="btn btn-primary btn-sm my-2 btn-action">
-                                    <img src="/img/eye.png" alt="Show" class="icon">
-                                </a>
+                                <form action="/admin/skippingClass/{{ $skippingClass->id }}" method="POST"
+                                    class="d-inline-block">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm my-2 btn-action btn-delete">
+                                        <img src="/img/delete.png" alt="Delete" class="icon">
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

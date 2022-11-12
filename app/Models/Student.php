@@ -25,6 +25,11 @@ class Student extends Authenticatable
         return $this->hasMany(Attendance::class);
     }
 
+    public function skippingClasses()
+    {
+        return $this->hasMany(Student::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'nisn';

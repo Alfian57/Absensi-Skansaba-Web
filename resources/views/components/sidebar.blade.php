@@ -113,6 +113,12 @@
                         <p class="ms-3">Absensi</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/admin/skippingClass">
+                        <img src="/img/attendance.png" class="icon">
+                        <p class="ms-3">Data Siswa Bolos</p>
+                    </a>
+                </li>
                 @if (Auth::guard('user')->check())
                     <li class="nav-item">
                         <a data-toggle="collapse" href="#base">

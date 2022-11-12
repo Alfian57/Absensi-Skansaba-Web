@@ -109,7 +109,7 @@
                                         <td class="text-warning">{{ ucwords($attendance->desc) }}</td>
                                     @elseif($attendance->desc === 'masuk')
                                         <td class="text-primary">{{ ucwords($attendance->desc) }}</td>
-                                    @elseif($attendance->desc === 'alpha')
+                                    @elseif($attendance->desc === 'alpha' || $attendance->desc === 'masuk (bolos)')
                                         <td class="text-danger">{{ ucwords($attendance->desc) }}</td>
                                     @else
                                         <td class="text-dark">{{ ucwords($attendance->desc) }}</td>
@@ -146,6 +146,11 @@
                         <td>Alpha</td>
                         <td>:</td>
                         <td>{{ $alpha }}</td>
+                    </tr>
+                    <tr class="text-danger">
+                        <td>Masuk (bolos)</td>
+                        <td>:</td>
+                        <td>{{ $bolos }}</td>
                     </tr>
                 </table>
             </div>

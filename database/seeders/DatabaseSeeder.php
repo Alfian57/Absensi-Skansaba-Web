@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         //User::factory(3)->create();
         Grade::factory(48)->create();
         Teacher::factory(50)->create();
-        Student::factory(2000)->create();
+        Student::factory(10)->create();
 
         $now = Carbon::now();
         $now->setTimezone('Asia/Jakarta');
@@ -83,23 +83,33 @@ class DatabaseSeeder extends Seeder
         ]);
 
         OtherData::factory()->create([
-            'name' => 'Kunci Absensi',
+            'name' => 'QR Absensi Masuk',
             'value' => Str::random(20),
         ]);
 
         OtherData::factory()->create([
-            'name' => 'Waktu Mulai',
+            'name' => 'QR Absensi Pulang',
+            'value' => Str::random(20),
+        ]);
+
+        OtherData::factory()->create([
+            'name' => 'Waktu Absen Mulai',
             'value' => '07:00',
         ]);
 
         OtherData::factory()->create([
-            'name' => 'Waktu Terlambat',
+            'name' => 'Waktu Absen Terlambat',
             'value' => '07:30',
         ]);
 
         OtherData::factory()->create([
-            'name' => 'Waktu Berakhir',
+            'name' => 'Waktu Absen Berakhir',
             'value' => '07:45',
+        ]);
+
+        OtherData::factory()->create([
+            'name' => 'Waktu Pulang Mulai',
+            'value' => '14:00',
         ]);
 
         OtherData::factory()->create([

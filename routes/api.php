@@ -23,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::post("/student/login", [LoginController::class, 'login']);
 Route::get("/getAttendances", [PresentController::class, 'getAttendances']);
 Route::get("/getAttendances/{grade}", [PresentController::class, 'getAttendancesWithGrade']);
+Route::get("/getAttendancesHome", [PresentController::class, 'getAttendancesHome']);
+Route::get("/getAttendancesHome/{grade}", [PresentController::class, 'getAttendancesHomeWithGrade']);
+Route::get("/getSchedules/{studentId}", [ScheduleController::class, 'getClassSchedules']);
 
 Route::group(['prefix' => 'student', 'middleware' => 'auth:sanctum'], function () {
     Route::get("/me", [LoginController::class, 'profile']);

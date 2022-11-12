@@ -67,6 +67,8 @@
 
 <body>
     <div class="wrapper">
+        @include('sweetalert::alert')
+
         @include('components.navbar')
 
         @include('components.sidebar')
@@ -97,7 +99,6 @@
             </footer>
         </div>
     </div>
-    @include('sweetalert::alert')
 </body>
 
 </html>

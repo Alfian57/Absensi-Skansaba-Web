@@ -46,6 +46,14 @@
                 Masuk
             </label>
         </div>
+
+        <div class="form-check">
+            <input class="form-check-input" value="masuk (bolos)" type="radio" name="desc" id="bolos"
+                @checked($attendance->desc == 'masuk (bolos)')>
+            <label class="form-check-label" for="bolos">
+                Masuk (bolos)
+            </label>
+        </div>
         @error('desc')
             <div class="text-danger">
                 {{ $message }}
