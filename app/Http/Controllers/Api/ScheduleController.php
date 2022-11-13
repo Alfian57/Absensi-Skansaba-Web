@@ -94,9 +94,8 @@ class ScheduleController extends Controller
         } else if ($day == "Saturday") {
             $schedules->where('day', 'sabtu');
         }
-        $schedules->get();
 
-        foreach ($schedules as $schedule) {
+        foreach ($schedules->get() as $schedule) {
             $response[] = [
                 'id' => $schedule->subject->id,
                 'name' => $schedule->subject->name,
