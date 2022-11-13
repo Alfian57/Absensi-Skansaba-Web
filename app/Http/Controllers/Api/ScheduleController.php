@@ -68,16 +68,33 @@ class ScheduleController extends Controller
             return response()->json($response);
         }
 
-        //HARI
-
         $pickedSubject = SkippingClass::where('student_id', $student->id)
             ->whereDate('created_at', '=', Carbon::now()->format('Y-m-d'))
             ->pluck('subject_id');
 
         $schedules = Schedule::where('grade_id', $grade->id)
             ->whereNotIn('subject_id', $pickedSubject)
-            ->with('subject')
-            ->get();
+            ->with('subject');
+
+        $day = Carbon::now();
+        $day->setTimezone('Asia/Jakarta');
+        $day = $day->translatedFormat('l');
+        if ($day == "Sunday") {
+            $schedules->where('day', 'minggu');
+        } else if ($day == "Monday") {
+            $schedules->where('day', 'senin');
+        } else if ($day == "Tuesday") {
+            $schedules->where('day', 'selasa');
+        } else if ($day == "Wednesday") {
+            $schedules->where('day', 'rabu');
+        } else if ($day == "Thursday") {
+            $schedules->where('day', 'kamis');
+        } else if ($day == "Friday") {
+            $schedules->where('day', 'jumat');
+        } else if ($day == "Saturday") {
+            $schedules->where('day', 'sabtu');
+        }
+        $schedules->get();
 
         foreach ($schedules as $schedule) {
             $response[] = [

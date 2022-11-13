@@ -138,6 +138,7 @@
                         <th>Sakit</th>
                         <th>Ijin</th>
                         <th>Alpha</th>
+                        <th>Masuk (bolos)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -149,6 +150,7 @@
                             <td class="text-warning">{{ $item['sakit'] }}</td>
                             <td class="text-warning">{{ $item['ijin'] }}</td>
                             <td class="text-danger">{{ $item['alpha'] }}</td>
+                            <td class="text-danger">{{ $item['bolos'] }}</td>
                         </tr>
                     @endforeach
                 </tbody>

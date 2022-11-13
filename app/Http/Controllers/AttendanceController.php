@@ -320,6 +320,9 @@ class AttendanceController extends Controller
             $alpha = $attendances->clone();
             $alpha->where('desc', 'alpha')->whereRaw('DAY(present_date)=' . $day->day);
 
+            $bolos = $attendances->clone();
+            $bolos->where('desc', 'masuk (bolos)')->whereRaw('DAY(present_date)=' . $day->day);
+
             $data[] = [
                 'tanggal' => $day->day,
                 'masuk' => $masuk->count(),
@@ -327,6 +330,7 @@ class AttendanceController extends Controller
                 'sakit' => $sakit->count(),
                 'ijin' => $ijin->count(),
                 'alpha' => $alpha->count(),
+                'bolos' => $bolos->count(),
             ];
         }
 
@@ -349,6 +353,9 @@ class AttendanceController extends Controller
             return redirect()->back();
         }
 
-        return Excel::download(new AttendanceExport(request('grade'), request('date')), 'rekap-absensi.xlsx');
+        $grade = Grade::where('slug', request('grade'))->first();
+        $fileName = "Rekap $grade->name | " . request('date') . ".xlsx";
+
+        return Excel::download(new AttendanceExport(request('grade'), request('date')), $fileName);
     }
 }

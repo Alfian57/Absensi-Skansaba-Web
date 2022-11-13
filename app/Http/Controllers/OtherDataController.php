@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateOtherDataRequest;
 use App\Models\OtherData;
 use Illuminate\Support\Str;
 use App\Models\Grade;
+use Illuminate\Support\Facades\Artisan;
 
 class OtherDataController extends Controller
 {
@@ -86,6 +87,7 @@ class OtherDataController extends Controller
                     ->with('oldValue', $request->value);
             }
         } else if ($request->name == "Hari Masuk") {
+            Artisan::call('attendance:create');
             $days = [];
             if ($request->Senin) {
                 $days[] = 'Senin';
