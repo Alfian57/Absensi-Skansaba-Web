@@ -89,41 +89,15 @@
 
             <div class="mb-3 mt-3 col-lg-6">
                 <label class="mb-2">Hari</label>
-                <div class="form-check">
-                    <input class="form-check-input" value="senin" type="radio" name="day" id="monday"
-                        @if (old('day') == 'senin') checked @endif>
-                    <label class="form-check-label" for="monday">
-                        Senin
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" value="selasa" type="radio" name="day" id="tuesday"
-                        @if (old('day') == 'selasa') checked @endif>
-                    <label class="form-check-label" for="tuesday">
-                        Selasa
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" value="rabu" type="radio" name="day" id="wednesday"
-                        @if (old('day') == 'rabu') checked @endif>
-                    <label class="form-check-label" for="wednesday">
-                        Rabu
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" value="kamis" type="radio" name="day" id="thursday"
-                        @if (old('day') == 'kamis') checked @endif>
-                    <label class="form-check-label" for="thursday">
-                        Kamis
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" value="jumat" type="radio" name="day" id="friday"
-                        @if (old('day') == 'jumat') checked @endif>
-                    <label class="form-check-label" for="friday">
-                        Jumat
-                    </label>
-                </div>
+                @foreach ($days as $day)
+                    <div class="form-check">
+                        <input class="form-check-input" value="{{ strtolower($day) }}" type="radio" name="day"
+                            id="{{ $day }}" @if (old('day') == '{{ $day }}') checked @endif>
+                        <label class="form-check-label" for="{{ $day }}">
+                            {{ $day }}
+                        </label>
+                    </div>
+                @endforeach
                 @error('day')
                     <div class="text-danger">
                         {{ $message }}

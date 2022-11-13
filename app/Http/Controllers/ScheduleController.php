@@ -7,6 +7,7 @@ use App\Models\Schedule;
 use App\Http\Requests\StoreScheduleRequest;
 use App\Http\Requests\UpdateScheduleRequest;
 use App\Models\Grade;
+use App\Models\OtherData;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Auth;
@@ -39,10 +40,14 @@ class ScheduleController extends Controller
     {
         Helper::addHistory('/admin/schedules/create', 'Tambah Jadwal Mengajar');
 
+        $days = OtherData::where('name', 'Hari Masuk')->first();
+        $days = explode(", ", $days->value);
+
         $data = [
             'title' => 'Tambah Jadwal Pelajaran',
             'teachers' => Teacher::latest()->get(),
             'subjects' => Subject::latest()->get(),
+            'days' => $days,
             'grades' => Grade::latest()->get()
         ];
 
@@ -95,11 +100,15 @@ class ScheduleController extends Controller
     {
         Helper::addHistory('/admin/schedules/' . $schedule->id . '/edit', 'Ubah Jadwal Mengajar');
 
+        $days = OtherData::where('name', 'Hari Masuk')->first();
+        $days = explode(", ", $days->value);
+
         $data = [
             'title' => 'Edit Data Jadwal Pelajaran',
             'schedule' => $schedule,
             'teachers' => Teacher::latest()->get(),
             'subjects' => Subject::latest()->get(),
+            'days' => $days,
             'grades' => Grade::latest()->get()
         ];
 
