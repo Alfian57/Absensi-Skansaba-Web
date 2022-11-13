@@ -20,6 +20,7 @@
                         <th>Nama Guru</th>
                         <th>Mata Pelajaran</th>
                         <th>Kelas</th>
+                        <th>Hari</th>
                         <th>Jam Mulai</th>
                         <th>Jam Selesai</th>
                         <th class="action">Aksi</th>
@@ -32,6 +33,7 @@
                             <td>{{ $schedule->teacher->name }}</td>
                             <td>{{ $schedule->subject->name }}</td>
                             <td>{{ $schedule->grade->name }}</td>
+                            <td>{{ ucwords($schedule->day) }}</td>
                             <td>{{ $schedule->time_start }}</td>
                             <td>{{ $schedule->time_finish }}</td>
                             <td>
