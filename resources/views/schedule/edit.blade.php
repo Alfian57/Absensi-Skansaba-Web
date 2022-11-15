@@ -93,8 +93,14 @@
                 <label class="mb-2">Hari</label>
                 @foreach ($days as $day)
                     <div class="form-check">
-                        <input class="form-check-input" value="{{ strtolower($day) }}" type="radio" name="day"
-                            id="{{ $day }}" @if (old('day', $schedule->day) == '{{ strtolower($day) }}') checked @endif>
+                        @if (old('day', $schedule->day) == strtolower($day))
+                            <input class="form-check-input" value="{{ strtolower($day) }}" type="radio" name="day"
+                                id="{{ $day }}" checked>
+                        @else
+                            <input class="form-check-input" value="{{ strtolower($day) }}" type="radio" name="day"
+                                id="{{ $day }}">
+                        @endif
+
                         <label class="form-check-label" for="{{ $day }}">
                             {{ $day }}
                         </label>

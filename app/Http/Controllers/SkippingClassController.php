@@ -21,7 +21,10 @@ class SkippingClassController extends Controller
     {
         Helper::addHistory('/admin/skippingClass', 'Siswa Bolos');
 
-        $attendances = Attendance::where('desc', 'masuk')->orWhere('desc', 'masuk (bolos)')->where('present_date', date("Y-m-d"))->pluck('student_id');
+        $attendances = Attendance::whereIn('desc', ['masuk', 'terlambat', 'masuk (bolos)'])
+            ->where('present_date', date("Y-m-d"))
+            ->pluck('student_id');
+
         if ($attendances->isEmpty()) {
             $studentsId = [0];
         } else {
@@ -45,8 +48,7 @@ class SkippingClassController extends Controller
     public function create()
     {
         $attendances = Attendance::where('present_date', date("Y-m-d"))
-            ->where('desc', 'masuk')
-            ->orWhere('desc', 'masuk (bolos)')
+            ->whereIn('desc', ['masuk', 'terlambat', 'masuk (bolos)'])
             ->pluck('student_id');
 
         $data = [

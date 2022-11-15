@@ -53,10 +53,10 @@
 
     <div class="text-end mb-3">
         <a href="/admin/skippingClass/create" class="btn btn-success btn-sm">+ Tambah Siswa Bolos</a>
-        <a class="btn btn-info btn-sm ml-auto text-white" data-toggle="modal" data-target="#filterModal">
+        {{-- <a class="btn btn-info btn-sm ml-auto text-white" data-toggle="modal" data-target="#filterModal">
             <i class="fa fa-search" aria-hidden="true"></i>
             Filter
-        </a>
+        </a> --}}
     </div>
 
     @if ($skippingClasses->isEmpty())
