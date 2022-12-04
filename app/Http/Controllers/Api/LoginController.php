@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\Student;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
 {
@@ -30,23 +28,39 @@ class LoginController extends Controller
             return response()->json($data, 402);
         } else {
             $credential   = request(['nis', 'password']);
-            if (Auth::guard('student')->attempt($credential)) {
-                $grade = Student::where('nis', $request->nis)->select('grade_id')->first();
-                $grade = Grade::where('id', $grade->grade_id)->first();
 
-                $student = Student::where('nis', $request->nis)
+            if (Auth::guard('student')->attempt($credential)) {
+                $studentResponse = Student::where('nis', $request->nis)
                     ->select('id', 'nisn', 'nis', 'name', 'date_of_birth', 'gender', 'address', 'grade_id as grade', 'entry_year', 'profile_pic')
                     ->first();
+                $studentStatus = Student::where('nis', $request->nis)
+                    ->select('already_login')
+                    ->first();
 
-                $student->grade = $grade->name;
+                if ($studentStatus->already_login == true) {
+                    $data  = [
+                        'message'   => 'Akun Sudah Digunakan Di Perangkat Lain',
+                        'errors'    => null,
+                        'data'      => null
+                    ];
+                    return response()->json($data, 401);
+                }
 
-                $token = $student->createToken('token')->plainTextToken;
+                $grade = Student::where('nis', $request->nis)->select('grade_id')->first();
+                $grade = Grade::where('id', $grade->grade_id)->first();
+                $studentResponse->grade = $grade->name;
+
+                Student::where('id', $studentResponse->id)->update([
+                    'already_login' => true
+                ]);
+
+                $token = $studentResponse->createToken('token')->plainTextToken;
 
                 $data = [
                     'message' => 'Login Berhasil',
                     'errors' => null,
                     'data' => [
-                        'student' => $student,
+                        'student' => $studentResponse,
                         'access_token' => $token,
                         'token_type' => 'Bearer'
                     ]
@@ -65,6 +79,9 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+        Student::where('id', auth('sanctum')->user()->id)->update([
+            'already_login' => false
+        ]);
         // Auth::guard('student')->tokens()->where('id', $user->currentAccessToken()->id)->delete();
         $request->user()->currentAccessToken()->delete();
         // Auth::guard('student')->user()->tokens()->delete();

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->year('entry_year');
             $table->string('profile_pic')->nullable()->default(null);
             $table->string('password');
+            $table->boolean('already_login')->default(false);
 
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
 

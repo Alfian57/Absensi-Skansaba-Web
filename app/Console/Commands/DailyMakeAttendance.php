@@ -36,7 +36,7 @@ class DailyMakeAttendance extends Command
 
         $attendances = Attendance::where('return_time', null)
             ->where('present_date', '!=', date("Y-m-d"))
-            ->where('desc', 'masuk')
+            ->whereIn('desc', ['masuk', 'terlambat'])
             ->get();
 
         foreach ($attendances as $attendance) {

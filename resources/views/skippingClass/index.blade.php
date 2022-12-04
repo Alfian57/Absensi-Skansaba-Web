@@ -17,7 +17,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/admin/students" method="GET" class="d-flex">
+                <form action="/admin/skippingClass" method="GET" class="d-flex">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="nisn" class="form-label">NISN</label>
@@ -44,7 +44,6 @@
                             <button type="submit" class="btn btn-primary btn-sm"><img src="/img/search.png"
                                     class="icon"></button>
                         </div>
-
                     </div>
                 </form>
             </div>

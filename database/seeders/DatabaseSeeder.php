@@ -21,21 +21,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory(100)->create();
-        // Grade::factory(100)->create();
-        // Teacher::factory(100)->create();
-        // Student::factory(50)->create();
-        // Subject::factory(100)->create();
-        // Schedule::factory(100)->create();
-        // HomeroomTeacher::factory(100)->create();
-        // Attendance::factory(100)->create();
+        $this->call(
+            [
+                OtherDataSeeder::class,
+                UserSeeder::class
+            ]
+        );
 
-        // OtherData::factory()->create([
-        //     'name' => 'Present Key',
-        //     'value' => Str::random(20),
-        // ]);
-
-        //User::factory(3)->create();
         Grade::factory(48)->create();
         Teacher::factory(50)->create();
         Student::factory(10)->create();
@@ -53,68 +45,5 @@ class DatabaseSeeder extends Seeder
                 'present_time' => $now
             ]);
         }
-
-        User::factory()->create([
-            'name' => "Admin",
-            'email' => "admin@gmail.com",
-            'username' => "Admin",
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
-        ]);
-
-        User::factory()->create([
-            'name' => "Alfian Gading Saputra",
-            'email' => "gading@gmail.com",
-            'username' => "Gading",
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
-        ]);
-
-        User::factory()->create([
-            'name' => "Fajar Maulana",
-            'email' => "fajar@gmail.com",
-            'username' => "Fajar",
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
-        ]);
-
-        User::factory()->create([
-            'name' => "Rasyid Prayogo",
-            'email' => "rasyid@gmail.com",
-            'username' => "Rasyid",
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
-        ]);
-
-        OtherData::factory()->create([
-            'name' => 'QR Absensi Masuk',
-            'value' => Str::random(20),
-        ]);
-
-        OtherData::factory()->create([
-            'name' => 'QR Absensi Pulang',
-            'value' => Str::random(20),
-        ]);
-
-        OtherData::factory()->create([
-            'name' => 'Waktu Absen Mulai',
-            'value' => '07:00',
-        ]);
-
-        OtherData::factory()->create([
-            'name' => 'Waktu Absen Terlambat',
-            'value' => '07:30',
-        ]);
-
-        OtherData::factory()->create([
-            'name' => 'Waktu Absen Berakhir',
-            'value' => '07:45',
-        ]);
-
-        OtherData::factory()->create([
-            'name' => 'Waktu Pulang Mulai',
-            'value' => '14:00',
-        ]);
-
-        OtherData::factory()->create([
-            'name' => 'Hari Masuk',
-            'value' => 'Senin, Selasa, Rabu, Kamis, Jumat',
-        ]);
     }
 }
