@@ -166,9 +166,17 @@ class ScheduleController extends Controller
             'jumat' => Schedule::where('teacher_id', Auth::guard('teacher')->user()->id)->orderBy('time_start', 'ASC')->where('day', 'jumat')->get(),
         ];
 
+        $isNotEmpty = false;
+        foreach ($schedules as $key => $schedule) {
+            if (!$schedule->isEmpty()) {
+                $isNotEmpty = true;
+            }
+        }
+
         return view('schedule.myschedule', [
             'title' => 'My Schedule',
-            'schedules' => $schedules
+            'schedules' => $schedules,
+            'isNotEmpty' => $isNotEmpty
         ]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActiveAccountController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
@@ -88,5 +89,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('/students', StudentController::class);
 
         Route::resource('/admins', UserController::class)->except(['show']);
+
+        Route::get('/activeAccount', [ActiveAccountController::class, 'index']);
+        Route::delete('/activeAccount/{nisn}', [ActiveAccountController::class, 'delete']);
     });
 });

@@ -79,9 +79,9 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        Student::where('id', auth('sanctum')->user()->id)->update([
-            'already_login' => false
-        ]);
+        // Student::where('id', auth('sanctum')->user()->id)->update([
+        //     'already_login' => false
+        // ]);
         // Auth::guard('student')->tokens()->where('id', $user->currentAccessToken()->id)->delete();
         $request->user()->currentAccessToken()->delete();
         // Auth::guard('student')->user()->tokens()->delete();

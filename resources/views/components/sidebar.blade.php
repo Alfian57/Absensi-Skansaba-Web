@@ -207,6 +207,15 @@
                     </a>
                 </li>
 
+                @if (Auth::guard('user')->check())
+                    <li class="nav-item">
+                        <a href="/admin/activeAccount">
+                            <img src="/img/device.png" alt="Akun Aktif" class="icon">
+                            <p class="sub-item ms-3">Akun Aktif</p>
+                        </a>
+                    </li>
+                @endif
+
                 <li class="nav-item active mt-3">
                     <a href="#"
                         class="btn btn-primary w-100 rounded text-start text-dark
