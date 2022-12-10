@@ -24,8 +24,7 @@ $(document).ready(function () {
                     <th>#</th>
                     <th>Nama</th>
                     <th>Kelas</th>
-                    <th>Foto</th>
-                    <th>Keterangan</th>
+                    <th class='d-md-table-cell d-none'>Foto</th>
                 </tr>`;
         $.ajax({
             type: "GET",
@@ -66,12 +65,7 @@ $(document).ready(function () {
                         <td>` +
                             value.grade +
                             `</td>
-                        <td class='text-danger'>Tidak Ada Foto</td>
-                        <td class='` +
-                            color +
-                            `''>` +
-                            value.desc +
-                            `</td>
+                        <td class='text-danger d-md-table-cell d-none'>Tidak Ada Foto</td>
                     </tr>`;
                     } else {
                         data =
@@ -86,7 +80,7 @@ $(document).ready(function () {
                         <td>` +
                             value.grade +
                             `</td>
-                        <td>
+                        <td class='d-md-table-cell d-none'>
                             <div class='profile-pic-box rounded-circle'>
                                 <a href="` +
                             value.photo +
@@ -97,11 +91,6 @@ $(document).ready(function () {
                                 </a>
                             </div>
                         </td>
-                        <td class='` +
-                            color +
-                            `'>` +
-                            value.desc +
-                            `</td>
                     </tr>`;
                     }
                 });

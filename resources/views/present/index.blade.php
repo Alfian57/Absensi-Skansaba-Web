@@ -16,16 +16,18 @@
 <body>
     <!-- Main Content -->
     <div class="container-fluid">
-        <div class="row px-5 py-3">
-            <div class="col-lg-7 second-content bg-light px-3 overflow-hidden">
+        <div class="row px-md-5 px-2 py-3">
+            <div class="col-md-7 second-content bg-light px-3 overflow-hidden order-md-1 order-2">
                 @if (Request::is('present'))
-                    <h1 class="text-primary mt-3 text-center">Data Absensi Hari Ini</h1>
+                    <h1 class="text-primary mt-3 fs-5 d-block d-md-none text-center">Data Absensi Hari Ini</h1>
+                    <h1 class="text-primary mt-3 d-none d-md-block text-center">Data Absensi Hari Ini</h1>
                 @else
-                    <h1 class="text-primary mt-3 text-center">Data Absensi Pulang Hari Ini</h1>
+                    <h1 class="text-primary mt-3 fs-5 d-block d-md-none text-center">Data Absensi Pulang Hari Ini</h1>
+                    <h1 class="text-primary mt-3 d-none d-md-block text-center">Data Absensi Pulang Hari Ini</h1>
                 @endif
 
                 <div class="row justify-content-end mb-3">
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
                         <form action="/present" method="GET" class="d-flex">
                             <select class="form-select form-select-sm" name="grade">
                                 <option value="">Semua Kelas</option>
@@ -52,7 +54,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-lg-5 ps-5">
+            <div class="col-md-5 mb-5 order-md-2 order-1">
                 <div class="row main-content bg-success text-center w-100">
                     <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
                         <div class="container-fluid">
@@ -67,7 +69,7 @@
                                     </div>
                                 @else
                                     <div class="img-fluid mb-3 position-relative">
-                                        <div class="lock-opacity">
+                                        <div class="img-fluid lock-opacity">
                                             {!! QrCode::size(175)->generate('Ooooppppssss....') !!}
                                         </div>
                                         <div class="position-absolute lock-status">

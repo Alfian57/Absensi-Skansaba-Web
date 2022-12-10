@@ -9,11 +9,9 @@ body{
     margin: 20vh auto 0;
     display: flex;
 }
+
 .second-content{
-    /* background-image: url(/img/bg-present.jpg);
-    background-size: cover;
-    background-blend-mode: lighten; */
-    height: 93vh;
+    max-height: 93vh;
     border-radius: 20px;
     box-shadow: 0 5px 5px rgba(0,0,0,.4);
 }
@@ -32,7 +30,10 @@ body{
     color: #fff;
 }
 @media screen and (max-width: 768px) {
-    .main-content{width: 90%;}
+    .main-content{
+        width: 90%;
+        margin-top: 25px;
+    }
     .company__info{
         display: none;
     }

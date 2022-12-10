@@ -21,10 +21,10 @@ $(document).ready(function () {
         data =
             data +
             `<tr class="table-primary">
-                    <th>#</th>
+                    <th class='d-md-table-cell d-none'>#</th>
                     <th>Nama</th>
                     <th>Kelas</th>
-                    <th>Foto</th>
+                    <th class='d-md-table-cell d-none'>Foto</th>
                     <th>Keterangan</th>
                 </tr>`;
         $.ajax({
@@ -57,7 +57,7 @@ $(document).ready(function () {
                         data =
                             data +
                             `<tr>
-                        <td>` +
+                        <td class='d-md-table-cell d-none'>` +
                             (index + 1) +
                             `</td>
                         <td>` +
@@ -66,7 +66,7 @@ $(document).ready(function () {
                         <td>` +
                             value.grade +
                             `</td>
-                        <td class='text-danger'>Tidak Ada Foto</td>
+                        <td class='text-danger d-md-table-cell d-none'>Tidak Ada Foto</td>
                         <td class='` +
                             color +
                             `''>` +
@@ -77,7 +77,7 @@ $(document).ready(function () {
                         data =
                             data +
                             `<tr>
-                        <td>` +
+                        <td class='d-md-table-cell d-none'>` +
                             (index + 1) +
                             `</td>
                         <td>` +
@@ -86,7 +86,7 @@ $(document).ready(function () {
                         <td>` +
                             value.grade +
                             `</td>
-                        <td>
+                        <td class='d-md-table-cell d-none'>
                             <div class='profile-pic-box rounded-circle'>
                                 <a href="` +
                             value.photo +
