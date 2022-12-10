@@ -22,7 +22,7 @@
             </p>
         </div>
 
-        <div class="col-lg-5 border border-2 rounded bg-light mb-5 p-3 d-flex flex-row align-content-center shadow-lg">
+        <div class="col-lg-5 border border-2 rounded bg-light mb-5 p-3 align-content-center shadow-lg">
             <div class="row">
                 {{-- MURID --}}
                 <div class="bg-primary rounded text-white pt-3 mb-3 w-100">

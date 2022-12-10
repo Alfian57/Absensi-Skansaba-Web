@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SkippingClassExport;
 use App\Helper;
 use App\Models\Attendance;
+use App\Models\Grade;
 use App\Models\SkippingClass;
 use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SkippingClassController extends Controller
@@ -124,5 +127,17 @@ class SkippingClassController extends Controller
         SkippingClass::destroy($id);
 
         return redirect('/admin/skippingClass')->with('success', 'Data Berhasil Dihapus');
+    }
+
+    public function exportExcel()
+    {
+        if (!request('grade') || !request('date')) {
+            return redirect()->back();
+        }
+
+        $grade = Grade::where('slug', request('grade'))->first();
+        $fileName = "Rekap Siswa Bolos Kelas $grade->name | " . request('date') . ".xlsx";
+
+        return Excel::download(new SkippingClassExport(request('grade'), request('date')), $fileName);
     }
 }

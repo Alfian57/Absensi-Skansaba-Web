@@ -354,7 +354,7 @@ class AttendanceController extends Controller
         }
 
         $grade = Grade::where('slug', request('grade'))->first();
-        $fileName = "Rekap $grade->name | " . request('date') . ".xlsx";
+        $fileName = "Rekap Kelas $grade->name | " . request('date') . ".xlsx";
 
         return Excel::download(new AttendanceExport(request('grade'), request('date')), $fileName);
     }

@@ -1,7 +1,7 @@
 <div class="main-header">
     <div class="logo-header" data-background-color="blue">
 
-        <a href="#" class="logo">
+        <a href="#" class="logo d-none d-lg-block">
             <img src="/img/logo2.png" alt="navbar brand" class="navbar-brand pb-2" width="30">
             <b class="text-white me-3">SMKN 1 BANTUL</b>
         </a>

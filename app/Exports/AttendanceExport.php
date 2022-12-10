@@ -25,11 +25,9 @@ class AttendanceExport implements FromCollection, WithHeadings
         return Attendance::where('attendances.present_date', $this->date)
             ->join('students', 'attendances.student_id', "=", 'students.id')
             ->join('grades', 'grades.id', '=', 'students.grade_id')
-            ->leftJoin('skipping_classes', 'skipping_classes.student_id', "=", 'students.id')
-            ->join('subjects', 'subjects.id', '=', 'skipping_classes.subject_id')
             ->where('grades.slug', $this->grade)
-            ->select('students.name as nama', 'students.nisn', 'grades.name as kelas', 'attendances.desc', 'attendances.present_date', 'subjects.name')
-            ->orderBy('attendances.created_at', 'DESC')
+            ->select('students.name as nama', 'students.nisn', 'grades.name as kelas', 'attendances.desc')
+            ->orderBy('attendances.desc', 'DESC')
             ->get();
 
 
@@ -38,6 +36,6 @@ class AttendanceExport implements FromCollection, WithHeadings
 
     public function headings(): array
     {
-        return ['Nama', 'NISN', 'Kelas', "Keterangan", "Tanggal Absensi", "Pelajaran Yang Tidak Diikuti"];
+        return ['Nama', 'NISN', 'Kelas', "Keterangan"];
     }
 }

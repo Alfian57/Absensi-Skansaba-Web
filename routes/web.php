@@ -58,6 +58,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/attendances/gradeRekap/{slug}', [AttendanceController::class, 'rekapGradeShow']);
 
         Route::get('/attendances/export', [AttendanceController::class, 'exportExcel']);
+        Route::get('/skippingClass/export', [SkippingClassController::class, 'exportExcel']);
 
         Route::resource('/skippingClass', SkippingClassController::class)->only(['index', 'create', 'store', 'destroy']);
     });

@@ -72,14 +72,14 @@
         </div>
     </div>
 
-    <!-- Download Modal -->
+    <!-- Download Data Kelas Modal -->
     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header border-0">
                     <h5 class="modal-title">
-                        Download Data
+                        Download Data Kelas
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -103,9 +103,43 @@
         </div>
     </div>
 
+    <!-- Download Siswa Bolos Modal -->
+    <div class="modal fade" id="downloadModalBolos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">
+                        Download Data Siswa Bolos
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/admin/skippingClass/export" method="GET" class="d-flex">
+                    <input type="hidden" value="{{ $slug }}" name="grade">
+                    <div class="modal-body">
+                        <div class="mb-3 mt-3">
+                            <label for="date" class="form-label">Tanggal Presensi</label>
+                            <input type="date" class="form-control" name="date" id="date"
+                                value="{{ date('Y-m-d') }}" required autofocus>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="text-end mb-3">
         <a class="btn btn-primary btn-sm ml-auto text-white" data-toggle="modal" data-target="#downloadModal">
-            Download Data (Excel)
+            Download Data Kelas (Excel)
+        </a>
+        <a class="btn btn-warning btn-sm ml-auto text-white" data-toggle="modal" data-target="#downloadModalBolos">
+            Download Data Siswa Bolos (Excel)
         </a>
         <a class="btn btn-info btn-sm ml-auto text-white" data-toggle="modal" data-target="#filterModal">
             <i class="fa fa-search" aria-hidden="true"></i>
