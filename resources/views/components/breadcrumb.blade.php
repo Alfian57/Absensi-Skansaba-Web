@@ -1,5 +1,5 @@
 @if (Request::is('admin/home'))
-    <ul class="breadcrumbs">
+    <ul class="breadcrumbs d-none d-md-block">
         @for ($i = 0; $i < sizeof(session('history')); $i++)
             <li class="nav-home">
                 <a href="{{ session('history')[$i]['route'] }}" class="text-white">
@@ -14,7 +14,7 @@
         @endfor
     </ul>
 @else
-    <ul class="breadcrumbs">
+    <ul class="breadcrumbs d-none d-md-block">
         @for ($i = 0; $i < sizeof(session('history')); $i++)
             <li class="nav-home">
                 <a href="{{ session('history')[$i]['route'] }}">
