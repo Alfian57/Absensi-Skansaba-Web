@@ -27,7 +27,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/', function () {
+    return redirect('/present');
+});
 
 Route::get('/present', [PresentController::class, 'index']);
 Route::get('/presentHome', [PresentController::class, 'returnHome']);
