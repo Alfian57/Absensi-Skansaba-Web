@@ -120,7 +120,7 @@
     <!-- Datatables -->
     {{-- <script src="/js/plugin/datatables/datatables.min.js"></script> --}}
 
-    @if (Request::is('present'))
+    @if (Request::is('attendance'))
         <script src="/js/attendance.js"></script>
     @else
         <script src="/js/attendanceHome.js"></script>
