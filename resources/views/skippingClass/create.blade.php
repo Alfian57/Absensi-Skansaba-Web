@@ -43,7 +43,7 @@
                 let selectFirst = "";
                 $.ajax({
                     type: "GET",
-                    url: "/api/getSchedules/" + this.value,
+                    url: "/api/get-schedules/" + this.value,
                     cache: "false",
                     success: function(response) {
                         if (response.length == 0) {

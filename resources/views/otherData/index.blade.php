@@ -22,7 +22,7 @@
                         <td>{{ $otherData->name }}</td>
                         <td>{{ $otherData->value }}</td>
                         <td>
-                            <a href="/admin/otherData/{{ $otherData->id }}/edit"
+                            <a href="/admin/other-data/{{ $otherData->id }}/edit"
                                 class="btn btn-warning btn-sm my-2 btn-action">
                                 <img src="/img/edit.png" alt="Edit" class="icon">
                             </a>

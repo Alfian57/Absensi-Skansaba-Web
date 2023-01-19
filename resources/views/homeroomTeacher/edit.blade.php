@@ -4,7 +4,7 @@
     @include('components.breadcrumb')
 
     <h2 class="text-center">Tambah Wali Kelas</h2>
-    <form action="/admin/homeroomTeachers/{{ $homeroomTeacher->id }}" method="POST">
+    <form action="/admin/homeroom-teachers/{{ $homeroomTeacher->id }}" method="POST">
         @method('put')
         @csrf
         <div class="mb-3">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="text-end">
-            <a href="/admin/homeroomTeachers" class="btn btn-danger btn-sm mt-3">Kembali</a>
+            <a href="/admin/homeroom-teachers" class="btn btn-danger btn-sm mt-3">Kembali</a>
             <button type="submit" class="btn btn-primary btn-sm mt-3">Submit</button>
         </div>
     </form>

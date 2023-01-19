@@ -29,7 +29,7 @@
                             <td>{{ $grade->name }}</td>
 
                             <td>
-                                <a href="/admin/attendances/gradeRekap/{{ $grade->slug }}"
+                                <a href="/admin/attendances/grade-rekap/{{ $grade->slug }}"
                                     class="btn btn-primary btn-sm my-2 btn-action">
                                     <img src="/img/eye.png" alt="Show" class="icon">
                                 </a>

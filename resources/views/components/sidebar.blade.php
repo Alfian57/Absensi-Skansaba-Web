@@ -63,7 +63,7 @@
                                 </a>
                             </li> --}}
                             <li>
-                                <a href="/admin/changePassword" class="collapsed">
+                                <a href="/admin/change-password" class="collapsed">
                                     <span class="link-collapse">Ganti Password</span>
                                 </a>
                             </li>
@@ -71,7 +71,7 @@
                                 <div class="dropdown-divider"></div>
                             </li>
                             <li>
-                                <a href="/admin/changePic" class="collapsed">
+                                <a href="/admin/change-pic" class="collapsed">
                                     <span class="link-collapse">Ganti Foto Profile</span>
                                 </a>
                             </li>
@@ -114,7 +114,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin/skippingClass">
+                    <a href="/admin/skipping-class">
                         <img src="/img/attendance.png" class="icon">
                         <p class="ms-3">Data Siswa Bolos</p>
                     </a>
@@ -141,7 +141,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/admin/homeroomTeachers">
+                                    <a href="/admin/homeroom-teachers">
                                         <img src="/img/teacher.png" class="icon">
                                         <span class="sub-item">Wali Kelas</span>
                                     </a>
@@ -179,7 +179,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="/admin/otherData">
+                        <a href="/admin/other-data">
                             <img src="/img/other-data.png" class="icon">
                             <p class="ms-3">Data Lain</p>
                         </a>
@@ -201,7 +201,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/admin/attendances/gradeRekap">
+                    <a href="/admin/attendances/grade-rekap">
                         <img src="/img/rekap.png" alt="Rekap Kelas" class="icon">
                         <p class="sub-item ms-3">Rekap Kelas</p>
                     </a>
@@ -209,7 +209,7 @@
 
                 @if (Auth::guard('user')->check())
                     <li class="nav-item">
-                        <a href="/admin/activeAccount">
+                        <a href="/admin/active-account">
                             <img src="/img/device.png" alt="Akun Aktif" class="icon">
                             <p class="sub-item ms-3">Akun Aktif</p>
                         </a>

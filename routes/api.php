@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MeController;
 use App\Http\Controllers\Api\ScheduleController;
 use App\Http\Controllers\Api\PresentController;
 use Illuminate\Support\Facades\Route;
@@ -20,18 +21,18 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post("/student/login", [LoginController::class, 'login']);
-Route::get("/getAttendances", [PresentController::class, 'getAttendances']);
-Route::get("/getAttendances/{grade}", [PresentController::class, 'getAttendancesWithGrade']);
-Route::get("/getAttendancesHome", [PresentController::class, 'getAttendancesHome']);
-Route::get("/getAttendancesHome/{grade}", [PresentController::class, 'getAttendancesHomeWithGrade']);
-Route::get("/getSchedules/{studentId}", [ScheduleController::class, 'getClassSchedules']);
+Route::post("/student/login", [AuthController::class, 'login']);
+Route::get("/attendances", [PresentController::class, 'getAttendances']);
+Route::get("/attendances/{grade}", [PresentController::class, 'getAttendancesWithGrade']);
+Route::get("/attendances-home", [PresentController::class, 'getAttendancesHome']);
+Route::get("/attendances-home/{grade}", [PresentController::class, 'getAttendancesHomeWithGrade']);
+Route::get("/get-schedules/{studentId}", [ScheduleController::class, 'getClassSchedules']);
 
 Route::group(['prefix' => 'student', 'middleware' => 'auth:sanctum'], function () {
-    Route::get("/me", [LoginController::class, 'profile']);
-    Route::get("/myAttendance", [PresentController::class, 'recap']);
-    Route::post("/logout", [LoginController::class, 'logout']);
-    Route::post("/changePassword", [LoginController::class, 'changePassword']);
+    Route::get("/me", [MeController::class, 'profile']);
+    Route::get("/my-attendance", [PresentController::class, 'recap']);
+    Route::post("/logout", [AuthController::class, 'logout']);
+    Route::post("/change-password", [MeController::class, 'changePassword']);
     Route::post('/present', [PresentController::class, 'store']);
-    Route::get('/myschedules', [ScheduleController::class, 'index']);
+    Route::get('/my-schedules', [ScheduleController::class, 'index']);
 });

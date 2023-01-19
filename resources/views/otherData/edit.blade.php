@@ -5,7 +5,7 @@
 
     <h2 class="text-center mt-3">Ubah Data</h2>
 
-    <form action="/admin/otherData/{{ $otherData->id }}" method="POST">
+    <form action="/admin/other-data/{{ $otherData->id }}" method="POST">
         @method('put')
         @csrf
         <input type="hidden" name="id" value="{{ $otherData->id }}">
@@ -103,7 +103,7 @@
         </div>
 
         <div class="text-end">
-            <a href="/admin/otherData" class="btn btn-danger btn-sm mt-3">Kembali</a>
+            <a href="/admin/other-data" class="btn btn-danger btn-sm mt-3">Kembali</a>
             <button type="submit" class="btn btn-primary btn-sm mt-3">Submit</button>
         </div>
     </form>

@@ -7,9 +7,9 @@ $(document).ready(function () {
 
     let url = null;
     if (grade == null) {
-        url = "/api/getAttendances";
+        url = "/api/attendances";
     } else {
-        url = "/api/getAttendances/" + grade;
+        url = "/api/attendances/" + grade;
     }
 
     setInterval(() => {

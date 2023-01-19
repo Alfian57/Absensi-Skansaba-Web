@@ -5,7 +5,8 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeroomTeacherController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MeController;
 use App\Http\Controllers\OtherDataController;
 use App\Http\Controllers\PresentController;
 use App\Http\Controllers\ScheduleController;
@@ -28,39 +29,39 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/present');
+    return redirect('/attendance');
 });
 
-Route::get('/present', [PresentController::class, 'index']);
-Route::get('/presentHome', [PresentController::class, 'returnHome']);
+Route::get('/attendance', [PresentController::class, 'index']);
+Route::get('/attendance-home', [PresentController::class, 'returnHome']);
 //Route::post('/present', [PresentController::class, 'store']);
 
 Route::group(['prefix' => 'admin'], function () {
     //ADMIN AND TEACHER
     Route::middleware('guest:user,teacher')->group(function () {
-        Route::get('/login', [LoginController::class, 'login'])->name('login');
-        Route::post('/login', [LoginController::class, 'authenticate']);
+        Route::get('/login', [AuthController::class, 'login'])->name('login');
+        Route::post('/login', [AuthController::class, 'authenticate']);
     });
 
     Route::middleware(['auth:user,teacher'])->group(function () {
-        Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
         Route::get('/home', [HomeController::class, 'index']);
 
-        Route::get('/changePassword', [LoginController::class, 'changePassword']);
-        Route::put('/changePassword', [LoginController::class, 'updatePassword']);
+        Route::get('/change-password', [MeController::class, 'changePassword']);
+        Route::put('/change-password', [MeController::class, 'updatePassword']);
 
-        Route::get('/changePic', [LoginController::class, 'changePic']);
-        Route::put('/changePic', [LoginController::class, 'updatePic']);
+        Route::get('/change-pic', [MeController::class, 'changePic']);
+        Route::put('/change-pic', [MeController::class, 'updatePic']);
 
         Route::resource('/attendances', AttendanceController::class)->only(['index', 'update', 'edit']);
         Route::get('/attendances/rekap', [AttendanceController::class, 'rekapIndex']);
         Route::get('/attendances/rekap/{nisn}', [AttendanceController::class, 'rekapShow']);
-        Route::get('/attendances/gradeRekap', [AttendanceController::class, 'rekapGradeIndex']);
-        Route::get('/attendances/gradeRekap/{slug}', [AttendanceController::class, 'rekapGradeShow']);
+        Route::get('/attendances/grade-rekap', [AttendanceController::class, 'rekapGradeIndex']);
+        Route::get('/attendances/grade-rekap/{slug}', [AttendanceController::class, 'rekapGradeShow']);
 
         Route::get('/attendances/export', [AttendanceController::class, 'exportExcel']);
-        Route::get('/skippingClass/export', [SkippingClassController::class, 'exportExcel']);
+        Route::get('/skipping-class/export', [SkippingClassController::class, 'exportExcel']);
 
         Route::resource('/skippingClass', SkippingClassController::class)->only(['index', 'create', 'store', 'destroy']);
     });
@@ -75,9 +76,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/students/export', [StudentController::class, 'exportExcel']);
         Route::get('/teachers/export', [TeacherController::class, 'exportExcel']);
 
-        Route::get('/otherData', [OtherDataController::class, 'index']);
-        Route::get('/otherData/{id}/edit', [OtherDataController::class, 'edit']);
-        Route::put('/otherData/{id}', [OtherDataController::class, 'update']);
+        Route::get('/other-data', [OtherDataController::class, 'index']);
+        Route::get('/other-data/{id}/edit', [OtherDataController::class, 'edit']);
+        Route::put('/other-data/{id}', [OtherDataController::class, 'update']);
 
         Route::resource('/grades', GradeController::class)->except('show');
 
@@ -85,7 +86,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::resource('/subjects', SubjectController::class)->except('show');
 
-        Route::resource('/homeroomTeachers', HomeroomTeacherController::class)->except('show');
+        Route::resource('/homeroom-teachers', HomeroomTeacherController::class)->except('show');
 
         Route::resource('/schedules', ScheduleController::class)->except('show');
 
@@ -93,7 +94,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::resource('/admins', UserController::class)->except(['show']);
 
-        Route::get('/activeAccount', [ActiveAccountController::class, 'index']);
-        Route::delete('/activeAccount/{nisn}', [ActiveAccountController::class, 'delete']);
+        Route::get('/active-account', [ActiveAccountController::class, 'index']);
+        Route::delete('/active-account/{nisn}', [ActiveAccountController::class, 'delete']);
     });
 });

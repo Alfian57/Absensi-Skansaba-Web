@@ -17,7 +17,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/admin/activeAccount" method="GET" class="d-flex">
+                <form action="/admin/active-account" method="GET" class="d-flex">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="nisn" class="form-label">NISN</label>
@@ -81,7 +81,7 @@
                             <td>{{ $student->grade->name }}</td>
 
                             <td>
-                                <form action="/admin/activeAccount/{{ $student->nisn }}" method="POST"
+                                <form action="/admin/active-account/{{ $student->nisn }}" method="POST"
                                     class="d-inline-block">
                                     @method('delete')
                                     @csrf

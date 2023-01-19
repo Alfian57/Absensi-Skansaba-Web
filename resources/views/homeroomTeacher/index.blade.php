@@ -6,7 +6,7 @@
     <h2 class="text-center mt-3">Wali Kelas</h2>
 
     <div class="text-end mb-3">
-        <a href="/admin/homeroomTeachers/create" class="btn btn-success btn-sm">+ Tambah Wali Kelas</a>
+        <a href="/admin/homeroom-teachers/create" class="btn btn-success btn-sm">+ Tambah Wali Kelas</a>
     </div>
 
     @if ($homeroomTeachers->isEmpty())
@@ -29,11 +29,11 @@
                             <td>{{ $homeroomTeacher->teacher->name }}</td>
                             <td>{{ $homeroomTeacher->grade->name }}</td>
                             <td>
-                                <a href="/admin/homeroomTeachers/{{ $homeroomTeacher->id }}/edit"
+                                <a href="/admin/homeroom-teachers/{{ $homeroomTeacher->id }}/edit"
                                     class="btn btn-warning btn-sm my-2 btn-action">
                                     <img src="/img/edit.png" alt="Edit" class="icon">
                                 </a>
-                                <form action="/admin/homeroomTeachers/{{ $homeroomTeacher->id }}" method="POST"
+                                <form action="/admin/homeroom-teachers/{{ $homeroomTeacher->id }}" method="POST"
                                     class="d-inline-block">
                                     @method('delete')
                                     @csrf

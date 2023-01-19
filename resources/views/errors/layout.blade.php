@@ -27,7 +27,7 @@
                                 <h1 class="m-0">@yield('code')</h1>
                                 <h6>@yield('message1')</h6>
                                 <p>@yield('message2')</p>
-                                <a href="/present" class="btn btn-danger btn-sm mb-3 px-3">Kembali Ke Halaman
+                                <a href="/" class="btn btn-danger btn-sm mb-3 px-3">Kembali Ke Halaman
                                     Absensi</a>
                             </div>
                         </div>

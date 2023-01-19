@@ -4,7 +4,7 @@
     @include('components.breadcrumb')
 
     <h2 class="text-center mt-3">Tambah Wali Kelas</h2>
-    <form action="/admin/homeroomTeachers" method="POST">
+    <form action="/admin/homeroom-teachers" method="POST">
         @csrf
         <div class="mb-3">
             <label for="teacher_id" class="form-label @error('teacher_id') is-invalid @enderror">Nama Guru</label>
@@ -40,7 +40,7 @@
         </div>
 
         <div class="text-end">
-            <a href="/admin/homeroomTeachers" class="btn btn-danger btn-sm mt-3">Kembali</a>
+            <a href="/admin/homeroom-teachers" class="btn btn-danger btn-sm mt-3">Kembali</a>
             <button type="submit" class="btn btn-primary btn-sm mt-3">Submit</button>
         </div>
     </form>

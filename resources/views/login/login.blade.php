@@ -58,7 +58,7 @@
                                     <button type="submit" class="btn-login py-2 w-100">Submit</button>
                                 </div>
                                 <div class="col-md-6">
-                                    <button type="button" onclick="window.location.href='/present'"
+                                    <button type="button" onclick="window.location.href='/'"
                                         class="btn-return py-2 w-100">Halaman
                                         Utama</button>
                                 </div>

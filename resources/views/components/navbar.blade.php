@@ -45,8 +45,8 @@
                             <img src="/img/qr.png" alt="QR" title="Halaman Absensi" class="qr-icon">
                         </a>
                         <ul class="dropdown-menu animated fadeIn">
-                            <li><a class="dropdown-item" href="/present">Absen Masuk</a></li>
-                            <li><a class="dropdown-item" href="/presentHome">Absen Pulang</a></li>
+                            <li><a class="dropdown-item" href="/attendance">Absen Masuk</a></li>
+                            <li><a class="dropdown-item" href="/attendance-home">Absen Pulang</a></li>
                         </ul>
                     </div>
 
@@ -143,10 +143,10 @@
                             </li>
                             <li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/admin/changePassword" class="collapsed">Ganti
+                                <a class="dropdown-item" href="/admin/change-password" class="collapsed">Ganti
                                     Password</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/admin/changePic" class="collapsed">Ganti
+                                <a class="dropdown-item" href="/admin/change-pic" class="collapsed">Ganti
                                     Foto Profile</a>
                                 <div class="dropdown-divider"></div>
                                 <form action="/admin/logout" method="POST" class="dropdown-item">

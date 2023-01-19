@@ -17,7 +17,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/admin/attendances/gradeRekap/{{ $slug }}" method="GET" class="d-flex">
+                <form action="/admin/attendances/grade-rekap/{{ $slug }}" method="GET" class="d-flex">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="month" class="form-label">Bulan</label>
@@ -116,7 +116,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/admin/skippingClass/export" method="GET" class="d-flex">
+                <form action="/admin/skipping-class/export" method="GET" class="d-flex">
                     <input type="hidden" value="{{ $slug }}" name="grade">
                     <div class="modal-body">
                         <div class="mb-3 mt-3">
