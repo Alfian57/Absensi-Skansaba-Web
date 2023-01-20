@@ -51,7 +51,7 @@
     </div> --}}
 
     <div class="text-end mb-3">
-        <a href="/admin/skippingClass/create" class="btn btn-success btn-sm">+ Tambah Siswa Bolos</a>
+        <a href="/admin/skipping-class/create" class="btn btn-success btn-sm">+ Tambah Siswa Bolos</a>
         {{-- <a class="btn btn-info btn-sm ml-auto text-white" data-toggle="modal" data-target="#filterModal">
             <i class="fa fa-search" aria-hidden="true"></i>
             Filter
@@ -83,7 +83,7 @@
                             <td>{{ $skippingClass->subject->name }}</td>
 
                             <td>
-                                <form action="/admin/skippingClass/{{ $skippingClass->id }}" method="POST"
+                                <form action="/admin/skipping-class/{{ $skippingClass->id }}" method="POST"
                                     class="d-inline-block">
                                     @method('delete')
                                     @csrf

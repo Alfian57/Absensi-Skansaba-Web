@@ -12,7 +12,7 @@ class ActiveAccountController extends Controller
 {
     public function index()
     {
-        Helper::addHistory('/admin/activeAccount', 'Akun Aktif');
+        Helper::addHistory('/admin/active-account', 'Akun Aktif');
 
         $students = Student::where('already_login', true);
 
@@ -40,6 +40,6 @@ class ActiveAccountController extends Controller
             'already_login' => false
         ]);
 
-        return redirect('/admin/activeAccount')->with('success', 'Data Berhasil Dihapus');
+        return redirect('/admin/active-account')->with('success', 'Data Berhasil Dihapus');
     }
 }

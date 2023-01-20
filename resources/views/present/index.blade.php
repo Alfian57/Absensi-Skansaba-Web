@@ -28,7 +28,7 @@
 
                 <div class="row justify-content-end mb-3">
                     <div class="col-md-6">
-                        <form action="/present" method="GET" class="d-flex">
+                        <form action="/attendance" method="GET" class="d-flex">
                             <select class="form-select form-select-sm" name="grade">
                                 <option value="">Semua Kelas</option>
                                 @foreach ($grades as $grade)

@@ -63,7 +63,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/attendances/export', [AttendanceController::class, 'exportExcel']);
         Route::get('/skipping-class/export', [SkippingClassController::class, 'exportExcel']);
 
-        Route::resource('/skippingClass', SkippingClassController::class)->only(['index', 'create', 'store', 'destroy']);
+        Route::resource('/skipping-class', SkippingClassController::class)->only(['index', 'create', 'store', 'destroy']);
     });
 
     //TEACHER

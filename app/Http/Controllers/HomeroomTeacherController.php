@@ -19,7 +19,7 @@ class HomeroomTeacherController extends Controller
      */
     public function index()
     {
-        Helper::addHistory('/admin/homeroomTeachers', 'Wali Kelas');
+        Helper::addHistory('/admin/homeroom-teachers', 'Wali Kelas');
 
         $homeroomTeachers = HomeroomTeacher::latest()->with('teacher', 'grade');
 
@@ -38,7 +38,7 @@ class HomeroomTeacherController extends Controller
      */
     public function create()
     {
-        Helper::addHistory('/admin/homeroomTeachers/create', 'Tambah Wali Kelas');
+        Helper::addHistory('/admin/homeroom-teachers/create', 'Tambah Wali Kelas');
 
         $homeroomTeachers = HomeroomTeacher::pluck('teacher_id');
         if ($homeroomTeachers->isEmpty()) {
@@ -74,7 +74,7 @@ class HomeroomTeacherController extends Controller
 
         HomeroomTeacher::create($validatedData);
 
-        return redirect('/admin/homeroomTeachers')->with('success', 'Data Wali Kelas Berhasil Ditambahkan');
+        return redirect('/admin/homeroom-teachers')->with('success', 'Data Wali Kelas Berhasil Ditambahkan');
     }
 
     /**
@@ -95,7 +95,7 @@ class HomeroomTeacherController extends Controller
      */
     public function edit(HomeroomTeacher $homeroomTeacher)
     {
-        Helper::addHistory('/admin/homeroomTeachers/' . $homeroomTeacher->id . '/edit', 'Ubah Wali Kelas');
+        Helper::addHistory('/admin/homeroom-teachers/' . $homeroomTeacher->id . '/edit', 'Ubah Wali Kelas');
 
         $homeroomTeachers = HomeroomTeacher::pluck('teacher_id');
         if ($homeroomTeachers->isEmpty()) {
@@ -133,7 +133,7 @@ class HomeroomTeacherController extends Controller
 
         HomeroomTeacher::where('id', $homeroomTeacher->id)->update($validatedData);
 
-        return redirect('/admin/homeroomTeachers')->with('success', 'Data Wali Kelas Berhasil Diperbarui');
+        return redirect('/admin/homeroom-teachers')->with('success', 'Data Wali Kelas Berhasil Diperbarui');
     }
 
     /**
@@ -146,6 +146,6 @@ class HomeroomTeacherController extends Controller
     {
         HomeroomTeacher::destroy($homeroomTeacher->id);
 
-        return redirect('/admin/homeroomTeachers')->with('success', 'Data Wali Kelas ' . $homeroomTeacher->teacher->name . ' Berhasil Dihapus');
+        return redirect('/admin/homeroom-teachers')->with('success', 'Data Wali Kelas ' . $homeroomTeacher->teacher->name . ' Berhasil Dihapus');
     }
 }

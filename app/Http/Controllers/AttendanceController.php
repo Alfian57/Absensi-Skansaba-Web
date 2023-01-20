@@ -256,7 +256,7 @@ class AttendanceController extends Controller
 
     public function rekapGradeIndex()
     {
-        Helper::addHistory('/admin/attendances/gradeRekap', 'Rekap Kelas');
+        Helper::addHistory('/admin/attendances/grade-rekap', 'Rekap Kelas');
 
         $data = [
             'title' => 'Semua Rekap Kelas',
@@ -268,7 +268,7 @@ class AttendanceController extends Controller
 
     public function rekapGradeShow($slug)
     {
-        Helper::addHistory('/admin/attendances/gradeRekap', 'Detail Rekap Kelas');
+        Helper::addHistory('/admin/attendances/grade-rekap', 'Detail Rekap Kelas');
 
         $grade = Grade::where('slug', $slug)->first();
         $studentId = Student::where('grade_id', $grade->id)->pluck('id');

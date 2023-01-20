@@ -4,7 +4,7 @@
     @include('components.breadcrumb')
 
     <h2 class="text-center mt-3">Tambah Data Siswa Bolos</h2>
-    <form action="/admin/skippingClass" method="POST">
+    <form action="/admin/skipping-class" method="POST">
         @csrf
         <div class="mb-3">
             <label for="student_id" class="form-label @error('student_id') is-invalid @enderror">Nama Siswa</label>

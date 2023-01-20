@@ -13,7 +13,7 @@ class OtherDataController extends Controller
 {
     public function index()
     {
-        Helper::addHistory('/admin/otherData', 'Data Lain');
+        Helper::addHistory('/admin/other-data', 'Data Lain');
 
         $data = [
             'title' => 'Lain-lain',
@@ -24,11 +24,11 @@ class OtherDataController extends Controller
 
     public function edit($id)
     {
-        Helper::addHistory('/admin/otherData' . $id . "/edit", 'Ubah Data Lain');
+        Helper::addHistory('/admin/other-data' . $id . "/edit", 'Ubah Data Lain');
 
         $otherData = OtherData::where('id', $id)->first();
         if ($otherData == null) {
-            return redirect('/admin/otherData');
+            return redirect('/admin/other-data');
         }
 
         if ($otherData->name == "QR Absensi Masuk") {
@@ -44,7 +44,7 @@ class OtherDataController extends Controller
                 'value' => Str::random(20)
             ]);
 
-            return redirect('/admin/otherData')->with('success', 'Data Berhasil Diperbarui');
+            return redirect('/admin/other-data')->with('success', 'Data Berhasil Diperbarui');
         }
 
         $data = [
@@ -116,6 +116,6 @@ class OtherDataController extends Controller
 
         OtherData::where('id', $request->id)->update($validatedData);
 
-        return redirect('/admin/otherData')->with('success', 'Data Berhasil Diperbarui');
+        return redirect('/admin/other-data')->with('success', 'Data Berhasil Diperbarui');
     }
 }
