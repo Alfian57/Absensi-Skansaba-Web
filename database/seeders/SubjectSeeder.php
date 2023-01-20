@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Subject;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class SubjectSeeder extends Seeder
 {
@@ -14,6 +16,24 @@ class SubjectSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $data = [
+            'Bahasa Indonesia',
+            'Bahasa Inggris',
+            'Matematika',
+            'Fisika',
+            'Kimia',
+            'PPKN',
+            'Pemrograman Berorientasi Objek',
+            'Pemrograman Web dan Perangkat Bergerak',
+            'Basis Data',
+            'Bahasa Jawa',
+        ];
+
+        foreach ($data as $item) {
+            Subject::create([
+                'name' => $item,
+                'slug' => Str::slug($item)
+            ]);
+        }
     }
 }

@@ -24,11 +24,13 @@ class DatabaseSeeder extends Seeder
         $this->call(
             [
                 OtherDataSeeder::class,
-                UserSeeder::class
+                UserSeeder::class,
+                GradeSeeder::class,
+                SubjectSeeder::class,
+                StudentSeeder::class
             ]
         );
 
-        Grade::factory(48)->create();
         Teacher::factory(50)->create();
         Student::factory(10)->create();
 
