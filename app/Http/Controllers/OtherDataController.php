@@ -36,7 +36,7 @@ class OtherDataController extends Controller
                 'value' => Str::random(20)
             ]);
 
-            return redirect('/admin/otherData')->with('success', 'Data Berhasil Diperbarui');
+            return redirect('/admin/other-data')->with('success', 'Data Berhasil Diperbarui');
         }
 
         if ($otherData->name == "QR Absensi Pulang") {
