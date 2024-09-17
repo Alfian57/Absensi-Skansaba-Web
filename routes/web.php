@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\ActiveAccountController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeroomTeacherController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\OtherDataController;
 use App\Http\Controllers\PresentController;
